@@ -2,6 +2,7 @@ package com.pacatovisk.course.config;
 
 import com.pacatovisk.course.entities.Order;
 import com.pacatovisk.course.entities.User;
+import com.pacatovisk.course.entities.enums.OrderStatus;
 import com.pacatovisk.course.repositories.OrderRepository;
 import com.pacatovisk.course.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,9 @@ public class DevConfig implements CommandLineRunner {
         User user2 = new User(null, "Samuel", "samuel@gmail.com", "40028922", "414@454");
         User user3 = new User(null, "Willain", "willian@gmail.com", "40028922", "414@454");
 
-        Order order1 = new Order(null, Instant.parse("2023-01-20T19:53:07Z"), user1);
-        Order order2 = new Order(null, Instant.parse("2023-02-20T19:53:07Z"), user2);
-        Order order3 = new Order(null, Instant.parse("2023-03-12T19:53:07Z"), user3);
+        Order order1 = new Order(null, Instant.parse("2023-01-20T19:53:07Z"), OrderStatus.PAID, user1);
+        Order order2 = new Order(null, Instant.parse("2023-02-20T19:53:07Z"), OrderStatus.WAITING_PAYMENT, user2);
+        Order order3 = new Order(null, Instant.parse("2023-03-12T19:53:07Z"), OrderStatus.CANCELED, user3);
 
         userRepository.saveAll(List.of(user1, user2, user3));
         orderRepository.saveAll(Arrays.asList(order1, order2, order3));
