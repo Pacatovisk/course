@@ -1,8 +1,10 @@
 package com.pacatovisk.course.config;
 
+import com.pacatovisk.course.entities.Category;
 import com.pacatovisk.course.entities.Order;
 import com.pacatovisk.course.entities.User;
 import com.pacatovisk.course.entities.enums.OrderStatus;
+import com.pacatovisk.course.repositories.CategoryRepository;
 import com.pacatovisk.course.repositories.OrderRepository;
 import com.pacatovisk.course.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,17 @@ public class DevConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
+
+        Category category1 = new Category(null, "Electronics");
+        Category category2 = new Category(null, "Books");
+        Category category3 = new Category(null, "Computers");
+
+        categoryRepository.saveAll(Arrays.asList(category1, category2,category3));
 
         User user1 = new User(null, "Marcelinho", "marcelinho@gmail.com", "7878454488", "4141545454");
         User user2 = new User(null, "Samuel", "samuel@gmail.com", "40028922", "414@454");
