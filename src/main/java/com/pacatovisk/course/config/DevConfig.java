@@ -1,14 +1,8 @@
 package com.pacatovisk.course.config;
 
-import com.pacatovisk.course.entities.Category;
-import com.pacatovisk.course.entities.Order;
-import com.pacatovisk.course.entities.Product;
-import com.pacatovisk.course.entities.User;
+import com.pacatovisk.course.entities.*;
 import com.pacatovisk.course.entities.enums.OrderStatus;
-import com.pacatovisk.course.repositories.CategoryRepository;
-import com.pacatovisk.course.repositories.OrderRepository;
-import com.pacatovisk.course.repositories.ProductRepository;
-import com.pacatovisk.course.repositories.UserRepository;
+import com.pacatovisk.course.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +27,9 @@ public class DevConfig implements CommandLineRunner {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -70,5 +67,11 @@ public class DevConfig implements CommandLineRunner {
 
         userRepository.saveAll(List.of(user1, user2, user3));
         orderRepository.saveAll(Arrays.asList(order1, order2, order3));
+
+        OrderItem orderItem1 = new OrderItem(order1, product1, 2, product1.getPrice());
+        OrderItem orderItem2 = new OrderItem(order2, product2, 1, product2.getPrice());
+        OrderItem orderItem3 = new OrderItem(order3, product3, 2, product3.getPrice());
+
+        orderItemRepository.saveAll(Arrays.asList(orderItem1, orderItem2,orderItem3));
     }
 }
