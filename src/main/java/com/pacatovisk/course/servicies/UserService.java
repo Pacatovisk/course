@@ -2,6 +2,7 @@ package com.pacatovisk.course.servicies;
 
 import com.pacatovisk.course.entities.User;
 import com.pacatovisk.course.repositories.UserRepository;
+import com.pacatovisk.course.servicies.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class UserService {
     public User findById(Integer id) {
         return userRepository.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("User not found with id " + id + "!"));
+                        new ResourceNotFoundException(id));
     }
 
     public List<User> findAll() {
