@@ -24,10 +24,22 @@ public class UserService {
     }
 
     public User save(User user) {
-        return  userRepository.save(user);
+        return userRepository.save(user);
     }
 
     public void delete(Integer id) {
         userRepository.deleteById(id);
+    }
+
+    public User update(Integer id, User obj) {
+        User entity = userRepository.getReferenceById(id);
+        updateData(entity, obj);
+        return userRepository.save(entity);
+    }
+
+    private void updateData(User entity, User obj) {
+        entity.setName(obj.getEmail());
+        entity.setEmail(obj.getEmail());
+        entity.setPhone(obj.getPhone());
     }
 }
