@@ -73,5 +73,10 @@ public class DevConfig implements CommandLineRunner {
         OrderItem orderItem3 = new OrderItem(order3, product3, 2, product3.getPrice());
 
         orderItemRepository.saveAll(Arrays.asList(orderItem1, orderItem2,orderItem3));
+
+        Payment payment1 = new Payment(null, Instant.parse("2023-03-12T19:53:07Z"), order1);
+        order1.setPayment(payment1);
+
+        orderRepository.save(order1);
     }
 }
