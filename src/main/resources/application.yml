@@ -1,5 +1,7 @@
 spring:
   jpa:
     open-in-view: true
+    show-sql: true
+    format-sql: true
   profiles:
     active: dev
